@@ -262,24 +262,6 @@ variable "root_base_volume_pool" {
   default     = null
 }
 
-variable "rootfs_volume_pool" {
-  type        = string
-  description = "Node default rootfs volume pool"
-  default     = null
-}
-
-variable "initrd_volume_pool" {
-  type        = string
-  description = "Node default initrd volume pool"
-  default     = null
-}
-
-variable "kernel_volume_pool" {
-  type        = string
-  description = "Node default kernel volume pool"
-  default     = null
-}
-
 variable "log_volume_pool" {
   type        = string
   description = "Node default log volume pool"
