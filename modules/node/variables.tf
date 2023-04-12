@@ -262,6 +262,12 @@ variable "root_base_volume_pool" {
   default     = null
 }
 
+variable "log_volume" {
+  type        = bool
+  description = "Create log volume"
+  default     = null
+}
+
 variable "log_volume_pool" {
   type        = string
   description = "Node default log volume pool"
@@ -275,6 +281,12 @@ variable "log_volume_size" {
   nullable    = false
 }
 
+variable "data_volume" {
+  type        = bool
+  description = "Create data volume"
+  default     = null
+}
+
 variable "data_volume_pool" {
   type        = string
   description = "Node default data volume pool"
@@ -286,6 +298,12 @@ variable "data_volume_size" {
   description = "Node default data volume size in bytes"
   default     = 1024 * 1024 * 1024 * 20 # in bytes, 20 Gi
   nullable    = false
+}
+
+variable "backup_volume" {
+  type        = bool
+  description = "Create backup volume"
+  default     = null
 }
 
 variable "backup_volume_pool" {

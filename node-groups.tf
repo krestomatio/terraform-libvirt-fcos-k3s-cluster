@@ -52,10 +52,13 @@ module "node_groups" {
   root_volume_size      = var.node_groups[count.index].root_volume_size != null ? var.node_groups[count.index].root_volume_size : var.root_volume_size
   root_base_volume_name = var.node_groups[count.index].root_base_volume_name != null ? var.node_groups[count.index].root_base_volume_name : var.root_base_volume_name
   root_base_volume_pool = var.node_groups[count.index].root_base_volume_pool != null ? var.node_groups[count.index].root_base_volume_pool : var.root_base_volume_pool
+  log_volume            = var.node_groups[count.index].log_volume != null ? var.node_groups[count.index].log_volume : var.log_volume
   log_volume_size       = var.node_groups[count.index].log_volume_size != null ? var.node_groups[count.index].log_volume_size : var.log_volume_size
   log_volume_pool       = var.node_groups[count.index].log_volume_pool != null ? var.node_groups[count.index].log_volume_pool : var.log_volume_pool
+  data_volume           = var.node_groups[count.index].data_volume != null ? var.node_groups[count.index].data_volume : var.data_volume
   data_volume_pool      = var.node_groups[count.index].data_volume_pool != null ? var.node_groups[count.index].data_volume_pool : var.data_volume_pool
   data_volume_size      = var.node_groups[count.index].data_volume_size != null ? var.node_groups[count.index].data_volume_size : var.data_volume_size
+  backup_volume         = var.node_groups[count.index].backup_volume != null ? var.node_groups[count.index].backup_volume : var.backup_volume
   backup_volume_pool    = var.node_groups[count.index].backup_volume_pool != null ? var.node_groups[count.index].backup_volume_pool : var.backup_volume_pool
   backup_volume_size    = var.node_groups[count.index].backup_volume_size != null ? var.node_groups[count.index].backup_volume_size : var.backup_volume_size
   ignition_pool         = var.node_groups[count.index].ignition_pool != null ? var.node_groups[count.index].ignition_pool : var.ignition_pool

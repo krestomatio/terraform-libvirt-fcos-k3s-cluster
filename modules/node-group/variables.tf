@@ -13,13 +13,13 @@ variable "nodes" {
     root_volume_size      = optional(number)
     root_base_volume_name = optional(string)
     root_base_volume_pool = optional(string)
-    rootfs_volume_pool    = optional(string)
-    initrd_volume_pool    = optional(string)
-    kernel_volume_pool    = optional(string)
+    log_volume            = optional(bool)
     log_volume_size       = optional(number)
     log_volume_pool       = optional(string)
+    data_volume           = optional(bool)
     data_volume_pool      = optional(string)
     data_volume_size      = optional(number)
+    backup_volume         = optional(bool)
     backup_volume_pool    = optional(string)
     backup_volume_size    = optional(number)
     ignition_pool         = optional(string)
@@ -258,23 +258,12 @@ variable "root_base_volume_pool" {
   default     = null
 }
 
-variable "rootfs_volume_pool" {
-  type        = string
-  description = "Node default rootfs volume pool"
+variable "data_volume" {
+  type        = bool
+  description = "Create data volume"
   default     = null
 }
 
-variable "initrd_volume_pool" {
-  type        = string
-  description = "Node default initrd volume pool"
-  default     = null
-}
-
-variable "kernel_volume_pool" {
-  type        = string
-  description = "Node default kernel volume pool"
-  default     = null
-}
 
 variable "log_volume_pool" {
   type        = string
@@ -288,6 +277,12 @@ variable "log_volume_size" {
   default     = null
 }
 
+variable "log_volume_pool" {
+  type        = string
+  description = "Node default log volume pool"
+  default     = null
+}
+
 variable "data_volume_pool" {
   type        = string
   description = "Worker default data volume pool"
@@ -297,6 +292,12 @@ variable "data_volume_pool" {
 variable "data_volume_size" {
   type        = number
   description = "Worker default data volume size in bytes"
+  default     = null
+}
+
+variable "backup_volume" {
+  type        = bool
+  description = "Create backup volume"
   default     = null
 }
 
