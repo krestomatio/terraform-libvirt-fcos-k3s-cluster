@@ -56,11 +56,13 @@ resource "libvirt_network" "k3s_cluster" {
 resource "null_resource" "fcos_image_download" {
   provisioner "local-exec" {
     command = <<-TEMPLATE
+      pushd /tmp
       if [ ! -f "${local.fcos_image_name}" ]; then
         curl -L "${local.fcos_image_url}" -o "${local.fcos_image_name}.xz"
         echo "${local.fcos_image_sha256sum} ${local.fcos_image_name}.xz" | sha256sum -c
         unxz "${local.fcos_image_name}.xz"
       fi
+      popd
     TEMPLATE
   }
 }
@@ -68,8 +70,8 @@ resource "null_resource" "fcos_image_download" {
 resource "libvirt_volume" "fcos_image" {
   depends_on = [null_resource.fcos_image_download]
 
-  name   = local.fcos_image_name
-  source = local.fcos_image_name
+  name   = "terraform-libvirt-k3s-fcos-example-cluster-${local.fcos_image_name}"
+  source = "/tmp/${local.fcos_image_name}"
 }
 
 ######################## module #########################
