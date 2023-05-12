@@ -2,7 +2,6 @@
 locals {
   #### module ####
   # k3s
-  cluster_name       = "k3s-ha-cluster"
   k3s_channel        = "stable"
   generate_etc_hosts = true
   # butane common
@@ -58,7 +57,7 @@ locals {
   #### end module values ####
 
   # others
-  prefix = local.cluster_name
+  prefix = "k3s-ha-cluster"
 
   # network
   net_name      = "libvirt-fcos-${local.prefix}"
@@ -112,7 +111,6 @@ module "k3s_ha_cluster" {
   source = "../.."
 
   # k3s-fcos-cluster
-  cluster_name       = local.cluster_name
   k3s_channel        = local.k3s_channel
   generate_etc_hosts = local.generate_etc_hosts
   node_groups        = local.node_groups

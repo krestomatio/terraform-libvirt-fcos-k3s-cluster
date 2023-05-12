@@ -1,9 +1,4 @@
 # k3s-fcos-cluster
-variable "cluster_name" {
-  type        = string
-  description = "Cluster name"
-}
-
 variable "generate_etc_hosts" {
   type        = bool
   description = "Whether /etc/hosts entries shjould be generated for all cluster nodes created"
