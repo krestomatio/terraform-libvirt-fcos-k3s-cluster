@@ -24,17 +24,17 @@ module "node_groups" {
   butane_snippets_additional = var.node_groups[count.index].butane_snippets_additional != null ? var.node_groups[count.index].butane_snippets_additional : var.butane_snippets_additional
   systemd_pager              = var.node_groups[count.index].systemd_pager != null ? var.node_groups[count.index].systemd_pager : var.systemd_pager
   # butane common
-  ssh_authorized_key      = var.node_groups[count.index].ssh_authorized_key != null ? var.node_groups[count.index].ssh_authorized_key : var.ssh_authorized_key
-  etc_hosts               = local.generated_etc_hosts
-  etc_hosts_extra         = var.node_groups[count.index].etc_hosts_extra != null ? var.node_groups[count.index].etc_hosts_extra : var.etc_hosts_extra
-  rollout_wariness        = var.node_groups[count.index].rollout_wariness != null ? var.node_groups[count.index].rollout_wariness : var.rollout_wariness
-  updates_periodic_window = var.node_groups[count.index].updates_periodic_window != null ? var.node_groups[count.index].updates_periodic_window : var.updates_periodic_window
-  nameservers             = var.node_groups[count.index].nameservers != null ? var.node_groups[count.index].nameservers : var.nameservers
-  timezone                = var.node_groups[count.index].timezone != null ? var.node_groups[count.index].timezone : var.timezone
-  keymap                  = var.node_groups[count.index].keymap != null ? var.node_groups[count.index].keymap : var.keymap
-  additional_rpms         = var.node_groups[count.index].additional_rpms != null ? var.node_groups[count.index].additional_rpms : var.additional_rpms
-  sync_time_with_host     = var.node_groups[count.index].sync_time_with_host != null ? var.node_groups[count.index].sync_time_with_host : var.sync_time_with_host
-  do_not_countme          = var.node_groups[count.index].do_not_countme != null ? var.node_groups[count.index].do_not_countme : var.do_not_countme
+  ssh_authorized_key  = var.node_groups[count.index].ssh_authorized_key != null ? var.node_groups[count.index].ssh_authorized_key : var.ssh_authorized_key
+  etc_hosts           = local.generated_etc_hosts
+  etc_hosts_extra     = var.node_groups[count.index].etc_hosts_extra != null ? var.node_groups[count.index].etc_hosts_extra : var.etc_hosts_extra
+  rollout_wariness    = var.node_groups[count.index].rollout_wariness != null ? var.node_groups[count.index].rollout_wariness : var.rollout_wariness
+  periodic_updates    = var.node_groups[count.index].periodic_updates != null ? var.node_groups[count.index].periodic_updates : var.periodic_updates
+  nameservers         = var.node_groups[count.index].nameservers != null ? var.node_groups[count.index].nameservers : var.nameservers
+  timezone            = var.node_groups[count.index].timezone != null ? var.node_groups[count.index].timezone : var.timezone
+  keymap              = var.node_groups[count.index].keymap != null ? var.node_groups[count.index].keymap : var.keymap
+  additional_rpms     = var.node_groups[count.index].additional_rpms != null ? var.node_groups[count.index].additional_rpms : var.additional_rpms
+  sync_time_with_host = var.node_groups[count.index].sync_time_with_host != null ? var.node_groups[count.index].sync_time_with_host : var.sync_time_with_host
+  do_not_countme      = var.node_groups[count.index].do_not_countme != null ? var.node_groups[count.index].do_not_countme : var.do_not_countme
 
   # butane k3s
   mode          = var.node_groups[count.index].mode

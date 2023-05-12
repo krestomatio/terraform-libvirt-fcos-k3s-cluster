@@ -10,17 +10,17 @@ module "node_group" {
   systemd_pager              = var.systemd_pager
 
   # butane common
-  etc_hosts               = var.etc_hosts
-  etc_hosts_extra         = var.etc_hosts_extra
-  ssh_authorized_key      = var.ssh_authorized_key
-  rollout_wariness        = var.rollout_wariness
-  updates_periodic_window = var.updates_periodic_window
-  nameservers             = var.nameservers
-  timezone                = var.timezone
-  keymap                  = var.keymap
-  additional_rpms         = var.additional_rpms
-  sync_time_with_host     = var.sync_time_with_host
-  do_not_countme          = var.do_not_countme
+  etc_hosts           = var.etc_hosts
+  etc_hosts_extra     = var.etc_hosts_extra
+  ssh_authorized_key  = var.ssh_authorized_key
+  rollout_wariness    = var.rollout_wariness
+  periodic_updates    = var.periodic_updates
+  nameservers         = var.nameservers
+  timezone            = var.timezone
+  keymap              = var.keymap
+  additional_rpms     = var.additional_rpms
+  sync_time_with_host = var.sync_time_with_host
+  do_not_countme      = var.do_not_countme
 
   # butane k3s
   # bootstrap node mode only for first node in bootstrap node group mode

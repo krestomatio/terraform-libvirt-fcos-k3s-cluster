@@ -46,12 +46,21 @@ variable "node_groups" {
         mode = string
         # general
         butane_snippets_additional = optional(list(string))
-        updates_periodic_window = optional(
-          object({
-            days           = optional(list(string))
-            start_time     = optional(string)
-            length_minutes = optional(string)
-          })
+        periodic_updates = optional(
+          object(
+            {
+              time_zone = optional(string, "")
+              windows = list(
+                object(
+                  {
+                    days           = list(string)
+                    start_time     = string
+                    length_minutes = string
+                  }
+                )
+              )
+            }
+          )
         )
         k3s_channel         = optional(string)
         rollout_wariness    = optional(string)
@@ -245,18 +254,37 @@ variable "rollout_wariness" {
   default     = null
 }
 
-variable "updates_periodic_window" {
-  type = object({
-    days           = list(string)
-    start_time     = string
-    length_minutes = string
-  })
+variable "periodic_updates" {
+  type = object(
+    {
+      time_zone = optional(string, "")
+      windows = list(
+        object(
+          {
+            days           = list(string)
+            start_time     = string
+            length_minutes = string
+          }
+        )
+      )
+    }
+  )
   description = <<-TEMPLATE
     Only reboot for updates during certain timeframes
     {
-      days           = ["Sat", "Sun"],
-      start_time     = "22:30",
-      length_minutes = "60"
+      time_zone = "localtime"
+      windows = [
+        {
+          days           = ["Sat"],
+          start_time     = "23:30",
+          length_minutes = "60"
+        },
+        {
+          days           = ["Sun"],
+          start_time     = "00:30",
+          length_minutes = "60"
+        }
+      ]
     }
   TEMPLATE
   default     = null
