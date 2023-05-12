@@ -349,55 +349,43 @@ variable "cpu_mode" {
 
 variable "vcpu" {
   type        = number
-  description = "Worker default vcpu count"
+  description = "Node default vcpu count"
   default     = null
 }
 
 variable "memory" {
   type        = number
-  description = "Worker default memory in MiB"
+  description = "Node default memory in MiB"
   default     = null
 }
 
 variable "root_volume_pool" {
   type        = string
-  description = "Worker default root volume pool"
+  description = "Node default root volume pool"
   default     = null
 }
 
 variable "root_volume_size" {
   type        = number
-  description = "Worker default root volume size in bytes"
+  description = "Node default root volume size in bytes"
   default     = null
 }
 
 variable "root_base_volume_name" {
   type        = string
-  description = "Worker default base root volume name"
+  description = "Node default base root volume name"
   default     = null
 }
 
 variable "root_base_volume_pool" {
   type        = string
-  description = "Worker default base root volume pool"
+  description = "Node default base root volume pool"
   default     = null
 }
 
-variable "data_volume" {
+variable "log_volume" {
   type        = bool
-  description = "Create data volume"
-  default     = null
-}
-
-variable "log_volume_pool" {
-  type        = string
-  description = "Worker default log volume pool"
-  default     = null
-}
-
-variable "log_volume_size" {
-  type        = number
-  description = "Worker default log volume size in bytes"
+  description = "Create node log volume"
   default     = null
 }
 
@@ -407,33 +395,45 @@ variable "log_volume_pool" {
   default     = null
 }
 
+variable "log_volume_size" {
+  type        = number
+  description = "Node default log volume size in bytes"
+  default     = null
+}
+
+variable "data_volume" {
+  type        = bool
+  description = "Create node data volume"
+  default     = null
+}
+
 variable "data_volume_pool" {
   type        = string
-  description = "Worker default data volume pool"
+  description = "Node default data volume pool"
   default     = null
 }
 
 variable "data_volume_size" {
   type        = number
-  description = "Worker default data volume size in bytes"
+  description = "Node default data volume size in bytes"
   default     = null
 }
 
 variable "backup_volume" {
   type        = bool
-  description = "Create backup volume"
+  description = "Create node backup volume"
   default     = null
 }
 
 variable "backup_volume_pool" {
   type        = string
-  description = "Worker default backup volume pool"
+  description = "Node default backup volume pool"
   default     = null
 }
 
 variable "backup_volume_size" {
   type        = number
-  description = "Worker default backup volume size in bytes"
+  description = "Node default backup volume size in bytes"
   default     = null
 }
 

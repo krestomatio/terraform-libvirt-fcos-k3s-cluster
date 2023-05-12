@@ -1,10 +1,18 @@
 module "libvirt_fcos_base" {
   source  = "krestomatio/fcos/libvirt"
-  version = "0.0.1"
+  version = "0.0.15"
 
-  fqdn                = var.fqdn
-  cidr_ip_address     = var.cidr_ip_address
-  mac                 = var.mac
+  # custom
+  butane_snippets_additional = compact(
+    concat(
+      [
+        module.butane_k3s_snippets.config
+      ],
+      var.butane_snippets_additional
+    )
+  )
+
+  # common
   qemu_agent          = var.qemu_agent
   systemd_pager       = var.systemd_pager
   ssh_authorized_key  = var.ssh_authorized_key
@@ -17,16 +25,32 @@ module "libvirt_fcos_base" {
   sync_time_with_host = var.sync_time_with_host
   etc_hosts           = var.etc_hosts
   additional_rpms     = var.additional_rpms
-  vcpu                = var.vcpu
-  memory              = var.memory
-  root_volume_size    = var.root_volume_size
-  log_volume_size     = var.log_volume_size
-  data_volume_size    = var.data_volume_size
-  backup_volume_size  = var.backup_volume_size
-
+  # libvirt node
+  fqdn            = var.fqdn
+  cidr_ip_address = var.cidr_ip_address
+  mac             = var.mac
+  # specific libvirt node
+  cpu_mode              = var.cpu_mode
+  vcpu                  = var.vcpu
+  memory                = var.memory
+  root_volume_pool      = var.root_volume_pool
+  root_volume_size      = var.root_volume_size
   root_base_volume_name = var.root_base_volume_name
-
-  os_additional_rpms         = local.os_additional_rpms
-  data_volume                = local.data_volume
-  butane_snippets_additional = local.butane_snippets_additional
+  root_base_volume_pool = var.root_base_volume_pool
+  log_volume            = var.log_volume
+  log_volume_size       = var.log_volume_size
+  log_volume_pool       = var.log_volume_pool
+  data_volume           = var.data_volume
+  data_volume_pool      = var.data_volume_pool
+  data_volume_size      = var.data_volume_size
+  data_volume_path      = local.data_volume_path
+  backup_volume         = var.backup_volume
+  backup_volume_pool    = var.backup_volume_pool
+  backup_volume_size    = var.backup_volume_size
+  ignition_pool         = var.ignition_pool
+  autostart             = var.autostart
+  wait_for_lease        = var.wait_for_lease
+  network_id            = var.network_id
+  network_bridge        = var.network_bridge
+  network_name          = var.network_name
 }
