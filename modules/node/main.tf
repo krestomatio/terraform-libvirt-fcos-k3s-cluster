@@ -1,6 +1,6 @@
 module "libvirt_fcos_base" {
   source  = "krestomatio/fcos/libvirt"
-  version = "0.0.1"
+  version = "0.0.11"
 
   fqdn                = var.fqdn
   cidr_ip_address     = var.cidr_ip_address

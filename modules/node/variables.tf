@@ -283,7 +283,7 @@ variable "root_base_volume_pool" {
 
 variable "log_volume" {
   type        = bool
-  description = "Create log volume"
+  description = "Create node log volume"
   default     = null
 }
 
@@ -302,7 +302,7 @@ variable "log_volume_size" {
 
 variable "data_volume" {
   type        = bool
-  description = "Create data volume"
+  description = "Create node data volume"
   default     = null
 }
 
@@ -321,7 +321,7 @@ variable "data_volume_size" {
 
 variable "backup_volume" {
   type        = bool
-  description = "Create backup volume"
+  description = "Create node backup volume"
   default     = null
 }
 

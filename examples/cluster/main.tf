@@ -1,6 +1,9 @@
 ######################### values #########################
 locals {
+  #### module ####
+  # k3s
   cluster_name       = "k3s-cluster"
+  k3s_channel        = "stable"
   generate_etc_hosts = true
   # butane common
   ssh_authorized_key = file(pathexpand("~/.ssh/id_rsa.pub"))
@@ -8,9 +11,6 @@ locals {
   vcpu             = 1
   memory           = 1024
   data_volume_size = 1024 * 1024 * 1024 * 15 # in bytes, 15 Gi
-  net_cidr_ipv4    = "10.10.12.0/24"
-  net_cidr_ipv6    = "2001:db8:ca2:3::/64"
-  k3s_channel      = "stable"
   node_groups = [
     {
       name = "controllers"
@@ -35,7 +35,18 @@ locals {
       ]
     }
   ]
+  #### end module values ####
+
+  # others
+  prefix = local.cluster_name
+
+  # network
+  net_name      = "libvirt-fcos-${local.prefix}"
+  net_cidr_ipv4 = "10.10.12.0/24"
+  net_cidr_ipv6 = "2001:db8:ca2:12::/64"
+
   # image
+  image_name           = "terraform-libvirt-fcos-${local.fcos_image_name}"
   fcos_image_version   = "37.20230303.3.0"
   fcos_image_arch      = "x86_64"
   fcos_image_stream    = "stable"
@@ -46,7 +57,7 @@ locals {
 
 # network
 resource "libvirt_network" "k3s_cluster" {
-  name      = "k3s-cluster"
+  name      = loca.net_name
   mode      = "nat"
   domain    = "cluster.local"
   addresses = [local.net_cidr_ipv4, local.net_cidr_ipv6]
@@ -70,7 +81,7 @@ resource "null_resource" "fcos_image_download" {
 resource "libvirt_volume" "fcos_image" {
   depends_on = [null_resource.fcos_image_download]
 
-  name   = "terraform-libvirt-k3s-fcos-example-cluster-${local.fcos_image_name}"
+  name   = local.image_name
   source = "/tmp/${local.fcos_image_name}"
 }
 
@@ -82,6 +93,7 @@ module "k3s_cluster" {
 
   # k3s-fcos-cluster
   cluster_name       = local.cluster_name
+  k3s_channel        = local.k3s_channel
   generate_etc_hosts = local.generate_etc_hosts
   node_groups        = local.node_groups
 
