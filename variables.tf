@@ -208,16 +208,12 @@ variable "node_groups" {
     TEMPLATE
   }
   validation {
-    condition     = contains(["bootstrap"], var.node_groups[0].mode)
-    error_message = "The first node group should be the \"bootstrap\" mode"
-  }
-  validation {
     condition = length(
       [
         for node_group in var.node_groups : true if contains(["bootstrap"], node_group.mode)
       ]
-    ) == 1
-    error_message = "Only one node group should be in \"bootstrap\" mode"
+    ) <= 1
+    error_message = "A max of one node group should be in \"bootstrap\" mode"
   }
   validation {
     condition     = length(var.node_groups.*.name) == length(distinct(var.node_groups.*.name))
