@@ -239,6 +239,7 @@ variable "origin_server" {
 
 variable "token" {
   type        = string
+  default     = null
   sensitive   = true
   description = "K3s token for servers to join the cluster, ang agents if `agent_token` is not set"
 }

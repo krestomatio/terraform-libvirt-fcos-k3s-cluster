@@ -70,7 +70,7 @@ No resources.
 | <a name="input_sync_time_with_host"></a> [sync\_time\_with\_host](#input\_sync\_time\_with\_host) | Sync guest time with the kvm host | `bool` | `null` | no |
 | <a name="input_systemd_pager"></a> [systemd\_pager](#input\_systemd\_pager) | Systemd pager | `string` | `null` | no |
 | <a name="input_timezone"></a> [timezone](#input\_timezone) | Timezone for VMs as listed by `timedatectl list-timezones` | `string` | `null` | no |
-| <a name="input_token"></a> [token](#input\_token) | K3s token for servers to join the cluster, ang agents if `agent_token` is not set | `string` | n/a | yes |
+| <a name="input_token"></a> [token](#input\_token) | K3s token for servers to join the cluster, ang agents if `agent_token` is not set | `string` | `null` | no |
 | <a name="input_vcpu"></a> [vcpu](#input\_vcpu) | Node default vcpu count | `number` | `null` | no |
 | <a name="input_wait_for_lease"></a> [wait\_for\_lease](#input\_wait\_for\_lease) | Wait for network lease | `bool` | `null` | no |
 | <a name="input_xslt_snippet"></a> [xslt\_snippet](#input\_xslt\_snippet) | Snippet specifying XSLT to transform the generated XML definition before creating the domain. | `string` | `null` | no |

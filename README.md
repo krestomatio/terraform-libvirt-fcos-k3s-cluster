@@ -15,9 +15,7 @@ The following are the dependencies to create k3s cluster with this module:
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_random"></a> [random](#provider\_random) | n/a |
+No providers.
 
 ## Modules
 
@@ -27,17 +25,14 @@ The following are the dependencies to create k3s cluster with this module:
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [random_password.k3s_agent_token](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
-| [random_password.k3s_token](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+No resources.
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_additional_rpms"></a> [additional\_rpms](#input\_additional\_rpms) | Additional rpms to install during boot using rpm-ostree, along with any pre or post command | <pre>object(<br>    {<br>      cmd_pre  = optional(list(string), [])<br>      list     = optional(list(string), [])<br>      cmd_post = optional(list(string), [])<br>    }<br>  )</pre> | `null` | no |
-| <a name="input_agent_token"></a> [agent\_token](#input\_agent\_token) | K3s token for agents to join the cluster | `string` | `""` | no |
+| <a name="input_agent_token"></a> [agent\_token](#input\_agent\_token) | K3s token for agents to join the cluster | `string` | `null` | no |
 | <a name="input_arch"></a> [arch](#input\_arch) | The architecture for the VM (probably x86\_64 or i686), you normally won't need to set this unless you are building a special VM | `string` | `null` | no |
 | <a name="input_autostart"></a> [autostart](#input\_autostart) | Autostart with libvirt host | `bool` | `null` | no |
 | <a name="input_backup_volume"></a> [backup\_volume](#input\_backup\_volume) | Create node backup volume | `bool` | `null` | no |
@@ -84,15 +79,12 @@ The following are the dependencies to create k3s cluster with this module:
 | <a name="input_sync_time_with_host"></a> [sync\_time\_with\_host](#input\_sync\_time\_with\_host) | Sync guest time with the kvm host | `bool` | `null` | no |
 | <a name="input_systemd_pager"></a> [systemd\_pager](#input\_systemd\_pager) | Systemd pager | `string` | `null` | no |
 | <a name="input_timezone"></a> [timezone](#input\_timezone) | Timezone for VMs as listed by `timedatectl list-timezones` | `string` | `null` | no |
-| <a name="input_token"></a> [token](#input\_token) | K3s token for servers to join the cluster, ang agents if `agent_token` is not set | `string` | `""` | no |
+| <a name="input_token"></a> [token](#input\_token) | K3s token for servers to join the cluster, ang agents if `agent_token` is not set | `string` | `null` | no |
 | <a name="input_vcpu"></a> [vcpu](#input\_vcpu) | Node default vcpu count | `number` | `null` | no |
 | <a name="input_wait_for_lease"></a> [wait\_for\_lease](#input\_wait\_for\_lease) | Wait for network lease | `bool` | `null` | no |
 | <a name="input_xslt_snippet"></a> [xslt\_snippet](#input\_xslt\_snippet) | Snippet specifying XSLT to transform the generated XML definition before creating the domain. | `string` | `null` | no |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_agent_token"></a> [agent\_token](#output\_agent\_token) | K3s agent token |
-| <a name="output_token"></a> [token](#output\_token) | K3s token |
+No outputs.
 <!-- END_TF_DOCS -->

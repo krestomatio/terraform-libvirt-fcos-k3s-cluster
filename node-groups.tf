@@ -1,14 +1,3 @@
-resource "random_password" "k3s_token" {
-  count   = var.token != "" ? 0 : 1
-  length  = 64
-  special = false
-}
-
-resource "random_password" "k3s_agent_token" {
-  count   = var.agent_token != "" ? 0 : 1
-  length  = 64
-  special = false
-}
 
 module "node_groups" {
   count = length(var.node_groups)
@@ -40,8 +29,8 @@ module "node_groups" {
   mode          = var.node_groups[count.index].mode
   k3s_channel   = var.node_groups[count.index].k3s_channel != null ? var.node_groups[count.index].k3s_channel : var.k3s_channel
   origin_server = local.origin_server
-  token         = local.token
-  agent_token   = local.agent_token
+  token         = var.token
+  agent_token   = var.agent_token
   k3s_config    = var.node_groups[count.index].k3s_config
 
   # libvirt node

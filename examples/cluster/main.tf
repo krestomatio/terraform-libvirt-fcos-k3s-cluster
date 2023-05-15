@@ -4,6 +4,8 @@ locals {
   # k3s
   k3s_channel        = "stable"
   generate_etc_hosts = true
+  token              = "secret"
+  agent_token        = "secret"
   # butane common
   ssh_authorized_key = file(pathexpand("~/.ssh/id_rsa.pub"))
   # libvirt node
@@ -94,6 +96,8 @@ module "k3s_cluster" {
   k3s_channel        = local.k3s_channel
   generate_etc_hosts = local.generate_etc_hosts
   node_groups        = local.node_groups
+  token              = "secret"
+  agent_token        = "secret"
 
   # butane common
   ssh_authorized_key = local.ssh_authorized_key
@@ -110,13 +114,13 @@ module "k3s_cluster" {
 
 ######################### outputs #########################
 output "token" {
-  value       = module.k3s_cluster.token
+  value       = local.token
   description = "K3s token"
   sensitive   = true
 }
 
 output "agent_token" {
-  value       = module.k3s_cluster.agent_token
+  value       = local.agent_token
   description = "K3s agent token"
   sensitive   = true
 }
