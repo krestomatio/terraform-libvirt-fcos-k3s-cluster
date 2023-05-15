@@ -48,6 +48,14 @@ module "node_groups" {
   cpu_mode              = var.node_groups[count.index].cpu_mode != null ? var.node_groups[count.index].cpu_mode : var.cpu_mode
   vcpu                  = var.node_groups[count.index].vcpu != null ? var.node_groups[count.index].vcpu : var.vcpu
   memory                = var.node_groups[count.index].memory != null ? var.node_groups[count.index].memory : var.memory
+  libosinfo_id          = var.node_groups[count.index].libosinfo_id != null ? var.node_groups[count.index].libosinfo_id : var.libosinfo_id
+  xslt_snippet          = var.node_groups[count.index].xslt_snippet != null ? var.node_groups[count.index].xslt_snippet : var.xslt_snippet
+  arch                  = var.node_groups[count.index].arch != null ? var.node_groups[count.index].arch : var.arch
+  cmdline               = var.node_groups[count.index].cmdline != null ? var.node_groups[count.index].cmdline : var.cmdline
+  emulator              = var.node_groups[count.index].emulator != null ? var.node_groups[count.index].emulator : var.emulator
+  machine               = var.node_groups[count.index].machine != null ? var.node_groups[count.index].machine : var.machine
+  firmware              = var.node_groups[count.index].firmware != null ? var.node_groups[count.index].firmware : var.firmware
+  nvram                 = var.node_groups[count.index].nvram != null ? var.node_groups[count.index].nvram : var.nvram
   root_volume_pool      = var.node_groups[count.index].root_volume_pool != null ? var.node_groups[count.index].root_volume_pool : var.root_volume_pool
   root_volume_size      = var.node_groups[count.index].root_volume_size != null ? var.node_groups[count.index].root_volume_size : var.root_volume_size
   root_base_volume_name = var.node_groups[count.index].root_base_volume_name != null ? var.node_groups[count.index].root_base_volume_name : var.root_base_volume_name

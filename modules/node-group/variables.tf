@@ -6,9 +6,25 @@ variable "nodes" {
     cidr_ip_address = optional(string)
     mac             = optional(string)
     # specific libvirt node
-    cpu_mode              = optional(string)
-    vcpu                  = optional(number)
-    memory                = optional(number)
+    cpu_mode     = optional(string)
+    vcpu         = optional(number)
+    memory       = optional(number)
+    libosinfo_id = optional(string)
+    xslt_snippet = optional(string)
+    arch         = optional(string)
+    cmdline      = optional(list(map(string)))
+    emulator     = optional(string)
+    machine      = optional(string)
+    firmware     = optional(string)
+    nvram = optional(
+      object(
+        {
+          file     = string
+          template = optional(string)
+
+        }
+      )
+    )
     root_volume_pool      = optional(string)
     root_volume_size      = optional(number)
     root_base_volume_name = optional(string)
@@ -250,6 +266,60 @@ variable "vcpu" {
 variable "memory" {
   type        = number
   description = "Node default memory in MiB"
+  default     = null
+}
+
+variable "libosinfo_id" {
+  type        = string
+  description = "Id for libosinfo/os type. See https://gitlab.com/libosinfo/osinfo-db/-/tree/main"
+  default     = null
+}
+
+variable "xslt_snippet" {
+  type        = string
+  description = "Snippet specifying XSLT to transform the generated XML definition before creating the domain."
+  default     = null
+}
+
+variable "arch" {
+  type        = string
+  description = "The architecture for the VM (probably x86_64 or i686), you normally won't need to set this unless you are building a special VM"
+  default     = null
+}
+
+variable "cmdline" {
+  type        = list(map(string))
+  description = "Arguments to the kernel"
+  default     = []
+}
+
+variable "emulator" {
+  type        = string
+  description = "The path of the emulator to use"
+  default     = null
+}
+
+variable "machine" {
+  type        = string
+  description = "The machine type, you normally won't need to set this unless you are running on a platform that defaults to the wrong machine type for your template"
+  default     = null
+}
+
+variable "firmware" {
+  type        = string
+  description = "The UEFI rom images for exercising UEFI secure boot in a qemu environment."
+  default     = null
+}
+
+variable "nvram" {
+  type = object(
+    {
+      file     = string
+      template = optional(string)
+
+    }
+  )
+  description = "This block allows specifying the following attributes related to the nvram"
   default     = null
 }
 

@@ -1,6 +1,6 @@
 module "libvirt_fcos_base" {
   source  = "krestomatio/fcos/libvirt"
-  version = "0.0.15"
+  version = "0.0.17"
 
   # custom
   butane_snippets_additional = compact(
@@ -33,6 +33,14 @@ module "libvirt_fcos_base" {
   cpu_mode              = var.cpu_mode
   vcpu                  = var.vcpu
   memory                = var.memory
+  libosinfo_id          = var.libosinfo_id
+  xslt_snippet          = var.xslt_snippet
+  arch                  = var.arch
+  cmdline               = var.cmdline
+  emulator              = var.emulator
+  machine               = var.machine
+  firmware              = var.firmware
+  nvram                 = var.nvram
   root_volume_pool      = var.root_volume_pool
   root_volume_size      = var.root_volume_size
   root_base_volume_name = var.root_base_volume_name

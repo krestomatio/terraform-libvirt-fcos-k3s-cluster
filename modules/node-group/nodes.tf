@@ -39,6 +39,14 @@ module "node_group" {
   cpu_mode              = var.nodes[count.index].cpu_mode != null ? var.nodes[count.index].cpu_mode : var.cpu_mode
   vcpu                  = var.nodes[count.index].vcpu != null ? var.nodes[count.index].vcpu : var.vcpu
   memory                = var.nodes[count.index].memory != null ? var.nodes[count.index].memory : var.memory
+  libosinfo_id          = var.nodes[count.index].libosinfo_id != null ? var.nodes[count.index].libosinfo_id : var.libosinfo_id
+  xslt_snippet          = var.nodes[count.index].xslt_snippet != null ? var.nodes[count.index].xslt_snippet : var.xslt_snippet
+  arch                  = var.nodes[count.index].arch != null ? var.nodes[count.index].arch : var.arch
+  cmdline               = var.nodes[count.index].cmdline != null ? var.nodes[count.index].cmdline : var.cmdline
+  emulator              = var.nodes[count.index].emulator != null ? var.nodes[count.index].emulator : var.emulator
+  machine               = var.nodes[count.index].machine != null ? var.nodes[count.index].machine : var.machine
+  firmware              = var.nodes[count.index].firmware != null ? var.nodes[count.index].firmware : var.firmware
+  nvram                 = var.nodes[count.index].nvram != null ? var.nodes[count.index].nvram : var.nvram
   root_volume_pool      = var.nodes[count.index].root_volume_pool != null ? var.nodes[count.index].root_volume_pool : var.root_volume_pool
   root_volume_size      = var.nodes[count.index].root_volume_size != null ? var.nodes[count.index].root_volume_size : var.root_volume_size
   root_base_volume_name = var.nodes[count.index].root_base_volume_name != null ? var.nodes[count.index].root_base_volume_name : var.root_base_volume_name

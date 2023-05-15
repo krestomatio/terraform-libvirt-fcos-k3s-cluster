@@ -256,6 +256,60 @@ variable "memory" {
   nullable    = false
 }
 
+variable "libosinfo_id" {
+  type        = string
+  description = "Id for libosinfo/os type. See https://gitlab.com/libosinfo/osinfo-db/-/tree/main"
+  default     = null
+}
+
+variable "xslt_snippet" {
+  type        = string
+  description = "Snippet specifying XSLT to transform the generated XML definition before creating the domain."
+  default     = null
+}
+
+variable "arch" {
+  type        = string
+  description = "The architecture for the VM (probably x86_64 or i686), you normally won't need to set this unless you are building a special VM"
+  default     = null
+}
+
+variable "cmdline" {
+  type        = list(map(string))
+  description = "Arguments to the kernel"
+  default     = []
+}
+
+variable "emulator" {
+  type        = string
+  description = "The path of the emulator to use"
+  default     = null
+}
+
+variable "machine" {
+  type        = string
+  description = "The machine type, you normally won't need to set this unless you are running on a platform that defaults to the wrong machine type for your template"
+  default     = null
+}
+
+variable "firmware" {
+  type        = string
+  description = "The UEFI rom images for exercising UEFI secure boot in a qemu environment."
+  default     = null
+}
+
+variable "nvram" {
+  type = object(
+    {
+      file     = string
+      template = optional(string)
+
+    }
+  )
+  description = "This block allows specifying the following attributes related to the nvram"
+  default     = null
+}
+
 variable "root_volume_pool" {
   type        = string
   description = "Node default root volume pool"
