@@ -49,7 +49,7 @@ No resources.
 | <a name="input_etc_hosts"></a> [etc\_hosts](#input\_etc\_hosts) | /etc/host list | <pre>list(<br>    object(<br>      {<br>        ip       = string<br>        hostname = string<br>        fqdn     = string<br>      }<br>    )<br>  )</pre> | `null` | no |
 | <a name="input_etc_hosts_extra"></a> [etc\_hosts\_extra](#input\_etc\_hosts\_extra) | /etc/host extra block | `string` | `null` | no |
 | <a name="input_firmware"></a> [firmware](#input\_firmware) | The UEFI rom images for exercising UEFI secure boot in a qemu environment. | `string` | `null` | no |
-| <a name="input_generate_etc_hosts"></a> [generate\_etc\_hosts](#input\_generate\_etc\_hosts) | Whether /etc/hosts entries shjould be generated for all cluster nodes created | `bool` | n/a | yes |
+| <a name="input_generate_etc_hosts"></a> [generate\_etc\_hosts](#input\_generate\_etc\_hosts) | Whether /etc/hosts entries shjould be generated for all cluster nodes created. Default depends if `etc_hosts` set | `bool` | `null` | no |
 | <a name="input_ignition_pool"></a> [ignition\_pool](#input\_ignition\_pool) | Default ignition files pool | `string` | `null` | no |
 | <a name="input_interface_name"></a> [interface\_name](#input\_interface\_name) | Network interface name | `string` | `null` | no |
 | <a name="input_k3s_channel"></a> [k3s\_channel](#input\_k3s\_channel) | K3s installation channel | `string` | `null` | no |

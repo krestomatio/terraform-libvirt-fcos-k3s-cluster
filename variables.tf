@@ -1,7 +1,8 @@
 # k3s-fcos-cluster
 variable "generate_etc_hosts" {
   type        = bool
-  description = "Whether /etc/hosts entries shjould be generated for all cluster nodes created"
+  default     = null
+  description = "Whether /etc/hosts entries shjould be generated for all cluster nodes created. Default depends if `etc_hosts` set"
 }
 
 variable "k3s_channel" {
