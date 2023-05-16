@@ -62,6 +62,7 @@ variable "node_groups" {
         grub_password_hash  = optional(string)
         timezone            = optional(string)
         keymap              = optional(string)
+        interface_name      = optional(string)
         etc_hosts_extra     = optional(string)
         systemd_pager       = optional(string)
         sync_time_with_host = optional(bool)

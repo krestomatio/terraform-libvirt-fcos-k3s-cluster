@@ -21,6 +21,7 @@ module "node_groups" {
   nameservers         = var.node_groups[count.index].nameservers != null ? var.node_groups[count.index].nameservers : var.nameservers
   timezone            = var.node_groups[count.index].timezone != null ? var.node_groups[count.index].timezone : var.timezone
   keymap              = var.node_groups[count.index].keymap != null ? var.node_groups[count.index].keymap : var.keymap
+  interface_name      = var.node_groups[count.index].interface_name != null ? var.node_groups[count.index].interface_name : var.interface_name
   additional_rpms     = var.node_groups[count.index].additional_rpms != null ? var.node_groups[count.index].additional_rpms : var.additional_rpms
   sync_time_with_host = var.node_groups[count.index].sync_time_with_host != null ? var.node_groups[count.index].sync_time_with_host : var.sync_time_with_host
   do_not_countme      = var.node_groups[count.index].do_not_countme != null ? var.node_groups[count.index].do_not_countme : var.do_not_countme
