@@ -18,6 +18,7 @@ module "node_group" {
   nameservers         = var.nameservers
   timezone            = var.timezone
   keymap              = var.keymap
+  interface_name      = var.interface_name
   additional_rpms     = var.additional_rpms
   sync_time_with_host = var.sync_time_with_host
   do_not_countme      = var.do_not_countme

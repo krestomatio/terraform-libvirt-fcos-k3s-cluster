@@ -22,6 +22,7 @@ module "libvirt_fcos_base" {
   rollout_wariness    = var.rollout_wariness
   periodic_updates    = var.periodic_updates
   keymap              = var.keymap
+  interface_name      = var.interface_name
   sync_time_with_host = var.sync_time_with_host
   etc_hosts           = var.etc_hosts
   additional_rpms     = var.additional_rpms
