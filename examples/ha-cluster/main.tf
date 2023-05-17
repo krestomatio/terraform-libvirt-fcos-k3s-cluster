@@ -16,6 +16,9 @@ locals {
     {
       name = "controllers"
       mode = "bootstrap" # first one should always be in "bootstrap" mode
+      k3s_fleetlock = {
+        group = "controllers"
+      }
       nodes = [
         {
           fqdn            = "k3s-ha-cluster-controller-01.example.com"

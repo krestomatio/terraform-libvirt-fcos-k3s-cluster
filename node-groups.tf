@@ -33,6 +33,7 @@ module "node_groups" {
   token         = var.token
   agent_token   = var.agent_token
   k3s_config    = var.node_groups[count.index].k3s_config
+  k3s_fleetlock = var.node_groups[count.index].k3s_fleetlock
 
   # libvirt node
   cpu_mode              = var.node_groups[count.index].cpu_mode != null ? var.node_groups[count.index].cpu_mode : var.cpu_mode

@@ -1,6 +1,6 @@
 module "butane_k3s_snippets" {
   source  = "krestomatio/butane-snippets/ct//modules/k3s"
-  version = "0.0.16"
+  version = "0.0.17"
 
   config            = var.k3s_config
   mode              = var.mode
@@ -9,4 +9,5 @@ module "butane_k3s_snippets" {
   agent_token       = var.agent_token
   channel           = var.k3s_channel
   origin_server     = var.origin_server
+  fleetlock         = var.k3s_fleetlock
 }

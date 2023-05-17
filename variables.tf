@@ -95,6 +95,29 @@ variable "node_groups" {
             }
           )
         )
+        k3s_fleetlock = optional(
+          object(
+            {
+              version        = optional(string)
+              namespace      = optional(string)
+              cluster_ip     = optional(string)
+              group          = optional(string)
+              node_selectors = optional(list(map(string)), [])
+              tolerations = optional(
+                list(
+                  object(
+                    {
+                      key      = string
+                      operator = string
+                      value    = optional(string)
+                      effect   = string
+                    }
+                  )
+                ), []
+              )
+            }
+          )
+        )
         # general libvirt node
         cpu_mode     = optional(string)
         vcpu         = optional(number)

@@ -225,6 +225,32 @@ variable "k3s_config" {
   default     = null
 }
 
+variable "k3s_fleetlock" {
+  type = object(
+    {
+      version        = optional(string)
+      namespace      = optional(string)
+      cluster_ip     = optional(string)
+      group          = optional(string)
+      node_selectors = optional(list(map(string)), [])
+      tolerations = optional(
+        list(
+          object(
+            {
+              key      = string
+              operator = string
+              value    = optional(string)
+              effect   = string
+            }
+          )
+        ), []
+      )
+    }
+  )
+  description = "Fleetlock addon for zincati upgrade orchestration"
+  default     = null
+}
+
 variable "k3s_channel" {
   type        = string
   default     = null

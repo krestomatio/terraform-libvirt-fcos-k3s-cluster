@@ -31,6 +31,7 @@ module "node_group" {
   token         = var.token
   agent_token   = var.agent_token
   k3s_config    = var.k3s_config
+  k3s_fleetlock = var.k3s_fleetlock
 
   # libvirt node
   fqdn            = var.nodes[count.index].fqdn
