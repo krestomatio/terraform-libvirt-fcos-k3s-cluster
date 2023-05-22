@@ -15,7 +15,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_butane_k3s_snippets"></a> [butane\_k3s\_snippets](#module\_butane\_k3s\_snippets) | krestomatio/butane-snippets/ct//modules/k3s | 0.0.14 |
+| <a name="module_butane_k3s_snippets"></a> [butane\_k3s\_snippets](#module\_butane\_k3s\_snippets) | krestomatio/butane-snippets/ct//modules/k3s | 0.0.19 |
 | <a name="module_libvirt_fcos_base"></a> [libvirt\_fcos\_base](#module\_libvirt\_fcos\_base) | krestomatio/fcos/libvirt | 0.0.20 |
 
 ## Resources
@@ -49,7 +49,8 @@ No resources.
 | <a name="input_ignition_pool"></a> [ignition\_pool](#input\_ignition\_pool) | Default ignition files pool | `string` | `null` | no |
 | <a name="input_interface_name"></a> [interface\_name](#input\_interface\_name) | Network interface name | `string` | `null` | no |
 | <a name="input_k3s_channel"></a> [k3s\_channel](#input\_k3s\_channel) | K3s installation channel | `string` | `null` | no |
-| <a name="input_k3s_config"></a> [k3s\_config](#input\_k3s\_config) | K3s configuration | <pre>object(<br>    {<br>      envvars          = optional(list(string))<br>      parameters       = optional(list(string))<br>      selinux          = optional(bool)<br>      data_dir         = optional(string)<br>      script_url       = optional(string)<br>      script_sha256sum = optional(string)<br>      repo_baseurl     = optional(string)<br>      repo_gpgkey      = optional(string)<br>    }<br>  )</pre> | `null` | no |
+| <a name="input_k3s_config"></a> [k3s\_config](#input\_k3s\_config) | K3s configuration | <pre>object(<br>    {<br>      envvars              = optional(list(string))<br>      parameters           = optional(list(string))<br>      selinux              = optional(bool)<br>      data_dir             = optional(string)<br>      script_url           = optional(string)<br>      script_sha256sum     = optional(string)<br>      repo_baseurl         = optional(string)<br>      repo_gpgkey          = optional(string)<br>      testing_repo         = optional(bool)<br>      testing_repo_baseurl = optional(string)<br>      testing_repo_gpgkey  = optional(string)<br>    }<br>  )</pre> | `null` | no |
+| <a name="input_k3s_fleetlock"></a> [k3s\_fleetlock](#input\_k3s\_fleetlock) | Fleetlock addon for zincati upgrade orchestration | <pre>object(<br>    {<br>      version        = optional(string)<br>      namespace      = optional(string)<br>      cluster_ip     = optional(string)<br>      group          = optional(string)<br>      node_selectors = optional(list(map(string)), [])<br>      tolerations = optional(<br>        list(<br>          object(<br>            {<br>              key      = string<br>              operator = string<br>              value    = optional(string)<br>              effect   = string<br>            }<br>          )<br>        ), []<br>      )<br>    }<br>  )</pre> | `null` | no |
 | <a name="input_keymap"></a> [keymap](#input\_keymap) | Keymap | `string` | `null` | no |
 | <a name="input_libosinfo_id"></a> [libosinfo\_id](#input\_libosinfo\_id) | Id for libosinfo/os type. See https://gitlab.com/libosinfo/osinfo-db/-/tree/main | `string` | `null` | no |
 | <a name="input_log_volume"></a> [log\_volume](#input\_log\_volume) | Create node log volume | `bool` | `null` | no |

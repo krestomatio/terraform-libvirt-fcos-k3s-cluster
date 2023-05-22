@@ -84,14 +84,17 @@ variable "node_groups" {
         k3s_config = optional(
           object(
             {
-              envvars          = optional(list(string))
-              parameters       = optional(list(string))
-              selinux          = optional(bool)
-              data_dir         = optional(string)
-              script_url       = optional(string)
-              script_sha256sum = optional(string)
-              repo_baseurl     = optional(string)
-              repo_gpgkey      = optional(string)
+              envvars              = optional(list(string))
+              parameters           = optional(list(string))
+              selinux              = optional(bool)
+              data_dir             = optional(string)
+              script_url           = optional(string)
+              script_sha256sum     = optional(string)
+              repo_baseurl         = optional(string)
+              repo_gpgkey          = optional(string)
+              testing_repo         = optional(bool)
+              testing_repo_baseurl = optional(string)
+              testing_repo_gpgkey  = optional(string)
             }
           )
         )

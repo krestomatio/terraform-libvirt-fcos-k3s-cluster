@@ -1,6 +1,6 @@
 module "butane_k3s_snippets" {
   source  = "krestomatio/butane-snippets/ct//modules/k3s"
-  version = "0.0.18"
+  version = "0.0.19"
 
   config            = var.k3s_config
   mode              = var.mode
