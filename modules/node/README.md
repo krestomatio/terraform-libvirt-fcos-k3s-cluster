@@ -15,7 +15,7 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_butane_k3s_snippets"></a> [butane\_k3s\_snippets](#module\_butane\_k3s\_snippets) | krestomatio/butane-snippets/ct//modules/k3s | 0.0.23 |
+| <a name="module_butane_k3s_snippets"></a> [butane\_k3s\_snippets](#module\_butane\_k3s\_snippets) | krestomatio/butane-snippets/ct//modules/k3s | 0.0.25 |
 | <a name="module_libvirt_fcos_base"></a> [libvirt\_fcos\_base](#module\_libvirt\_fcos\_base) | krestomatio/fcos/libvirt | 0.0.20 |
 
 ## Resources
