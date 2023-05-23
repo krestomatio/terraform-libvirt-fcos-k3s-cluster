@@ -223,6 +223,17 @@ variable "k3s_fleetlock" {
   default     = null
 }
 
+variable "kubelet_config" {
+  type = object(
+    {
+      version = optional(string)
+      content = optional(string)
+    }
+  )
+  description = "Contains the configuration for the Kubelet"
+  default     = null
+}
+
 variable "k3s_channel" {
   type        = string
   default     = null

@@ -26,13 +26,14 @@ module "node_group" {
 
   # butane k3s
   # bootstrap node mode only for first node in bootstrap node group mode
-  mode          = var.mode == "bootstrap" && count.index != 0 ? "server" : var.mode
-  k3s_channel   = var.k3s_channel
-  origin_server = var.origin_server
-  token         = var.token
-  agent_token   = var.agent_token
-  k3s_config    = var.k3s_config
-  k3s_fleetlock = var.k3s_fleetlock
+  mode           = var.mode == "bootstrap" && count.index != 0 ? "server" : var.mode
+  k3s_channel    = var.k3s_channel
+  origin_server  = var.origin_server
+  token          = var.token
+  agent_token    = var.agent_token
+  k3s_config     = var.k3s_config
+  k3s_fleetlock  = var.k3s_fleetlock
+  kubelet_config = var.kubelet_config
 
   # libvirt node
   fqdn            = var.nodes[count.index].fqdn

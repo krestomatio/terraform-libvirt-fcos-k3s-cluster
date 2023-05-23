@@ -28,13 +28,14 @@ module "node_groups" {
   do_not_countme      = var.node_groups[count.index].do_not_countme != null ? var.node_groups[count.index].do_not_countme : var.do_not_countme
 
   # butane k3s
-  mode          = var.node_groups[count.index].mode
-  k3s_channel   = var.node_groups[count.index].k3s_channel != null ? var.node_groups[count.index].k3s_channel : var.k3s_channel
-  origin_server = local.origin_server
-  token         = var.token
-  agent_token   = var.agent_token
-  k3s_config    = var.node_groups[count.index].k3s_config
-  k3s_fleetlock = var.node_groups[count.index].k3s_fleetlock
+  mode           = var.node_groups[count.index].mode
+  k3s_channel    = var.node_groups[count.index].k3s_channel != null ? var.node_groups[count.index].k3s_channel : var.k3s_channel
+  origin_server  = local.origin_server
+  token          = var.token
+  agent_token    = var.agent_token
+  k3s_config     = var.node_groups[count.index].k3s_config
+  k3s_fleetlock  = var.node_groups[count.index].k3s_fleetlock
+  kubelet_config = var.node_groups[count.index].kubelet_config != null ? var.node_groups[count.index].kubelet_config : var.kubelet_config
 
   # libvirt node
   cpu_mode              = var.node_groups[count.index].cpu_mode != null ? var.node_groups[count.index].cpu_mode : var.cpu_mode

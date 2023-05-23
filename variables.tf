@@ -32,6 +32,17 @@ variable "agent_token" {
   description = "K3s token for agents to join the cluster"
 }
 
+variable "kubelet_config" {
+  type = object(
+    {
+      version = optional(string)
+      content = optional(string)
+    }
+  )
+  description = "Contains the configuration for the Kubelet"
+  default     = null
+}
+
 variable "node_groups" {
   type = list(
     object(
@@ -119,6 +130,14 @@ variable "node_groups" {
                   )
                 ), []
               )
+            }
+          )
+        )
+        kubelet_config = optional(
+          object(
+            {
+              version = optional(string)
+              content = optional(string)
             }
           )
         )

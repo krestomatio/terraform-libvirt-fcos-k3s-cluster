@@ -1,6 +1,6 @@
 module "butane_k3s_snippets" {
   source  = "krestomatio/butane-snippets/ct//modules/k3s"
-  version = "0.0.26"
+  version = "0.0.29"
 
   config            = var.k3s_config
   mode              = var.mode
@@ -10,4 +10,5 @@ module "butane_k3s_snippets" {
   channel           = var.k3s_channel
   origin_server     = var.origin_server
   fleetlock         = var.k3s_fleetlock
+  kubelet_config    = var.kubelet_config
 }

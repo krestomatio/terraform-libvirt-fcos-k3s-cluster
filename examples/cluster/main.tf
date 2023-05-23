@@ -6,6 +6,12 @@ locals {
   generate_etc_hosts = true
   token              = "secret"
   agent_token        = "secret"
+  kubelet_config = {
+    content = <<-TEMPLATE
+      shutdownGracePeriod: 30s
+      shutdownGracePeriodCriticalPods: 10s
+    TEMPLATE
+  }
   # butane common
   ssh_authorized_key = file(pathexpand("~/.ssh/id_rsa.pub"))
   # libvirt node
@@ -98,6 +104,7 @@ module "k3s_cluster" {
   node_groups        = local.node_groups
   token              = "secret"
   agent_token        = "secret"
+  kubelet_config     = local.kubelet_config
 
   # butane common
   ssh_authorized_key = local.ssh_authorized_key
