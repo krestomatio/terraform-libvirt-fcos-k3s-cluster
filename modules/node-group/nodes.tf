@@ -8,6 +8,7 @@ module "node_group" {
   qemu_agent                 = var.qemu_agent
   butane_snippets_additional = var.butane_snippets_additional
   systemd_pager              = var.systemd_pager
+  sysctl                     = var.sysctl
 
   # butane common
   etc_hosts           = var.etc_hosts

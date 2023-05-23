@@ -1,6 +1,6 @@
 module "libvirt_fcos_base" {
   source  = "krestomatio/fcos/libvirt"
-  version = "0.0.20"
+  version = "0.0.21"
 
   # custom
   butane_snippets_additional = compact(
@@ -18,6 +18,7 @@ module "libvirt_fcos_base" {
   ssh_authorized_key  = var.ssh_authorized_key
   nameservers         = var.nameservers
   timezone            = var.timezone
+  sysctl              = var.sysctl
   do_not_countme      = var.do_not_countme
   rollout_wariness    = var.rollout_wariness
   periodic_updates    = var.periodic_updates

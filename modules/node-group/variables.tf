@@ -98,6 +98,12 @@ variable "systemd_pager" {
   default     = null
 }
 
+variable "sysctl" {
+  description = "Additional kernel tuning in sysctl.d"
+  type        = map(string)
+  default     = null
+}
+
 variable "do_not_countme" {
   type        = bool
   description = "Disable Fedora CoreOS infrastructure count me feature"

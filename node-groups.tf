@@ -12,6 +12,7 @@ module "node_groups" {
   qemu_agent                 = var.node_groups[count.index].qemu_agent != null ? var.node_groups[count.index].qemu_agent : var.qemu_agent
   butane_snippets_additional = var.node_groups[count.index].butane_snippets_additional != null ? var.node_groups[count.index].butane_snippets_additional : var.butane_snippets_additional
   systemd_pager              = var.node_groups[count.index].systemd_pager != null ? var.node_groups[count.index].systemd_pager : var.systemd_pager
+  sysctl                     = var.node_groups[count.index].sysctl != null ? var.node_groups[count.index].sysctl : var.sysctl
   # butane common
   ssh_authorized_key  = var.node_groups[count.index].ssh_authorized_key != null ? var.node_groups[count.index].ssh_authorized_key : var.ssh_authorized_key
   etc_hosts           = local.generated_etc_hosts

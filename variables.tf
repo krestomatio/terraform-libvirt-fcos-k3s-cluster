@@ -66,6 +66,7 @@ variable "node_groups" {
         interface_name      = optional(string)
         etc_hosts_extra     = optional(string)
         systemd_pager       = optional(string)
+        sysctl              = optional(map(string))
         sync_time_with_host = optional(bool)
         do_not_countme      = optional(bool)
         wait_for_lease      = optional(bool)
@@ -288,6 +289,12 @@ variable "timezone" {
 variable "systemd_pager" {
   type        = string
   description = "Systemd pager"
+  default     = null
+}
+
+variable "sysctl" {
+  description = "Additional kernel tuning in sysctl.d"
+  type        = map(string)
   default     = null
 }
 
