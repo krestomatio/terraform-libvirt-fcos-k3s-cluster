@@ -1,50 +1,68 @@
 # node-group
 variable "nodes" {
-  type = list(object({
-    # libvirt node
-    fqdn            = string
-    cidr_ip_address = optional(string)
-    mac             = optional(string)
-    # specific libvirt node
-    cpu_mode     = optional(string)
-    vcpu         = optional(number)
-    memory       = optional(number)
-    libosinfo_id = optional(string)
-    xslt_snippet = optional(string)
-    arch         = optional(string)
-    cmdline      = optional(list(map(string)))
-    emulator     = optional(string)
-    machine      = optional(string)
-    firmware     = optional(string)
-    nvram = optional(
-      object(
-        {
-          file     = string
-          template = optional(string)
+  type = list(
+    object(
+      {
+        # libvirt node
+        fqdn            = string
+        cidr_ip_address = optional(string)
+        mac             = optional(string)
+        # specific libvirt node
+        cpu_mode     = optional(string)
+        vcpu         = optional(number)
+        memory       = optional(number)
+        libosinfo_id = optional(string)
+        xslt_snippet = optional(string)
+        arch         = optional(string)
+        cmdline      = optional(list(map(string)))
+        emulator     = optional(string)
+        machine      = optional(string)
+        firmware     = optional(string)
+        nvram = optional(
+          object(
+            {
+              file     = string
+              template = optional(string)
 
-        }
-      )
+            }
+          )
+        )
+        root_volume_pool      = optional(string)
+        root_volume_size      = optional(number)
+        root_base_volume_name = optional(string)
+        root_base_volume_pool = optional(string)
+        log_volume            = optional(bool)
+        log_volume_size       = optional(number)
+        log_volume_pool       = optional(string)
+        data_volume           = optional(bool)
+        data_volume_pool      = optional(string)
+        data_volume_size      = optional(number)
+        backup_volume         = optional(bool)
+        backup_volume_pool    = optional(string)
+        backup_volume_size    = optional(number)
+        ignition_pool         = optional(string)
+        autostart             = optional(bool)
+        wait_for_lease        = optional(bool)
+        network_id            = optional(string)
+        network_bridge        = optional(string)
+        network_name          = optional(string)
+        additional_disks = optional(
+          list(
+            object(
+              {
+                volume_id    = optional(string)
+                url          = optional(string)
+                file         = optional(string)
+                block_device = optional(string)
+                scsi         = optional(bool)
+                wwn          = optional(string)
+              }
+            )
+          )
+        )
+      }
     )
-    root_volume_pool      = optional(string)
-    root_volume_size      = optional(number)
-    root_base_volume_name = optional(string)
-    root_base_volume_pool = optional(string)
-    log_volume            = optional(bool)
-    log_volume_size       = optional(number)
-    log_volume_pool       = optional(string)
-    data_volume           = optional(bool)
-    data_volume_pool      = optional(string)
-    data_volume_size      = optional(number)
-    backup_volume         = optional(bool)
-    backup_volume_pool    = optional(string)
-    backup_volume_size    = optional(number)
-    ignition_pool         = optional(string)
-    autostart             = optional(bool)
-    wait_for_lease        = optional(bool)
-    network_id            = optional(string)
-    network_bridge        = optional(string)
-    network_name          = optional(string)
-  }))
+  )
   description = "List of server machine details"
   validation {
     condition = alltrue([
@@ -482,4 +500,22 @@ variable "network_name" {
   type        = string
   description = "Libvirt default network name for VMs"
   default     = null
+}
+
+variable "additional_disks" {
+  type = list(
+    object(
+      {
+        volume_id    = optional(string)
+        url          = optional(string)
+        file         = optional(string)
+        block_device = optional(string)
+        scsi         = optional(bool)
+        wwn          = optional(string)
+      }
+    )
+  )
+  description = "An array of one or more disks to attach to the domain. See [docs](https://registry.terraform.io/providers/dmacvicar/libvirt/0.7.1/docs/resources/domain#handling-disks)"
+  default     = []
+  nullable    = false
 }

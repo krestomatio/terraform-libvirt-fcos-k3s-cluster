@@ -180,6 +180,20 @@ variable "node_groups" {
         network_id            = optional(string)
         network_bridge        = optional(string)
         network_name          = optional(string)
+        additional_disks = optional(
+          list(
+            object(
+              {
+                volume_id    = optional(string)
+                url          = optional(string)
+                file         = optional(string)
+                block_device = optional(string)
+                scsi         = optional(bool)
+                wwn          = optional(string)
+              }
+            )
+          )
+        )
         nodes = list(
           object(
             {
@@ -226,6 +240,20 @@ variable "node_groups" {
               network_id            = optional(string)
               network_bridge        = optional(string)
               network_name          = optional(string)
+              additional_disks = optional(
+                list(
+                  object(
+                    {
+                      volume_id    = optional(string)
+                      url          = optional(string)
+                      file         = optional(string)
+                      block_device = optional(string)
+                      scsi         = optional(bool)
+                      wwn          = optional(string)
+                    }
+                  )
+                )
+              )
             }
           )
         )
@@ -600,4 +628,22 @@ variable "network_name" {
   type        = string
   description = "Libvirt default network name for VMs"
   default     = null
+}
+
+variable "additional_disks" {
+  type = list(
+    object(
+      {
+        volume_id    = optional(string)
+        url          = optional(string)
+        file         = optional(string)
+        block_device = optional(string)
+        scsi         = optional(bool)
+        wwn          = optional(string)
+      }
+    )
+  )
+  description = "An array of one or more disks to attach to the domain. See [docs](https://registry.terraform.io/providers/dmacvicar/libvirt/0.7.1/docs/resources/domain#handling-disks)"
+  default     = []
+  nullable    = false
 }

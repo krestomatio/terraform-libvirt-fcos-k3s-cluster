@@ -70,4 +70,5 @@ module "node_group" {
   network_id            = var.nodes[count.index].network_id != null ? var.nodes[count.index].network_id : var.network_id
   network_bridge        = var.nodes[count.index].network_bridge != null ? var.nodes[count.index].network_bridge : var.network_bridge
   network_name          = var.nodes[count.index].network_name != null ? var.nodes[count.index].network_name : var.network_name
+  additional_disks      = var.nodes[count.index].additional_disks != null ? var.nodes[count.index].additional_disks : var.additional_disks
 }

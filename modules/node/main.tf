@@ -1,6 +1,6 @@
 module "libvirt_fcos_base" {
   source  = "krestomatio/fcos/libvirt"
-  version = "0.0.21"
+  version = "0.0.22"
 
   # custom
   butane_snippets_additional = compact(
@@ -63,4 +63,5 @@ module "libvirt_fcos_base" {
   network_id            = var.network_id
   network_bridge        = var.network_bridge
   network_name          = var.network_name
+  additional_disks      = var.additional_disks
 }
