@@ -305,7 +305,7 @@ variable "token" {
   type        = string
   default     = null
   sensitive   = true
-  description = "K3s token for servers to join the cluster, ang agents if `agent_token` is not set"
+  description = "K3s token for servers to join the cluster, and agents if `agent_token` is not set"
 }
 
 variable "agent_token" {
