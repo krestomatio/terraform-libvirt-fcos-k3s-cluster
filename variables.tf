@@ -79,8 +79,6 @@ variable "node_groups" {
         systemd_pager       = optional(string)
         sysctl              = optional(map(string))
         sync_time_with_host = optional(bool)
-        do_not_countme      = optional(bool)
-        wait_for_lease      = optional(bool)
         qemu_agent          = optional(bool)
         do_not_countme      = optional(bool)
         additional_rpms = optional(
