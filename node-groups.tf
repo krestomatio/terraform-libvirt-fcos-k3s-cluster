@@ -28,14 +28,22 @@ module "node_groups" {
   do_not_countme      = var.node_groups[count.index].do_not_countme != null ? var.node_groups[count.index].do_not_countme : var.do_not_countme
 
   # butane k3s
-  mode           = var.node_groups[count.index].mode
-  k3s_channel    = var.node_groups[count.index].k3s_channel != null ? var.node_groups[count.index].k3s_channel : var.k3s_channel
-  origin_server  = local.origin_server
-  token          = var.token
-  agent_token    = var.agent_token
-  k3s_config     = var.node_groups[count.index].k3s_config
-  k3s_fleetlock  = var.node_groups[count.index].k3s_fleetlock
-  kubelet_config = var.node_groups[count.index].kubelet_config != null ? var.node_groups[count.index].kubelet_config : var.kubelet_config
+  mode                 = var.node_groups[count.index].mode
+  k3s_channel          = var.node_groups[count.index].k3s_channel != null ? var.node_groups[count.index].k3s_channel : var.k3s_channel
+  origin_server        = local.origin_server
+  token                = var.token
+  agent_token          = var.agent_token
+  selinux              = var.node_groups[count.index].selinux
+  install_script       = var.node_groups[count.index].install_script
+  script_envvars       = var.node_groups[count.index].script_envvars
+  script_parameters    = var.node_groups[count.index].script_parameters
+  repo_baseurl         = var.node_groups[count.index].repo_baseurl
+  repo_gpgkey          = var.node_groups[count.index].repo_gpgkey
+  testing_repo         = var.node_groups[count.index].testing_repo
+  testing_repo_baseurl = var.node_groups[count.index].testing_repo_baseurl
+  testing_repo_gpgkey  = var.node_groups[count.index].testing_repo_gpgkey
+  k3s_fleetlock        = var.node_groups[count.index].k3s_fleetlock
+  kubelet_config       = var.node_groups[count.index].kubelet_config != null ? var.node_groups[count.index].kubelet_config : var.kubelet_config
 
   # libvirt node
   cpu_mode              = var.node_groups[count.index].cpu_mode != null ? var.node_groups[count.index].cpu_mode : var.cpu_mode

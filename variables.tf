@@ -91,23 +91,24 @@ variable "node_groups" {
           )
         )
         # k3s config for this node_group
-        k3s_config = optional(
+        mode                 = optional(string)
+        selinux              = optional(bool)
+        repo_gpgkey          = optional(string)
+        repo_baseurl         = optional(string)
+        testing_repo         = optional(bool)
+        testing_repo_gpgkey  = optional(string)
+        testing_repo_baseurl = optional(string)
+        install_script = optional(
           object(
             {
-              envvars              = optional(list(string))
-              parameters           = optional(list(string))
-              selinux              = optional(bool)
-              data_dir             = optional(string)
-              script_url           = optional(string)
-              script_sha256sum     = optional(string)
-              repo_baseurl         = optional(string)
-              repo_gpgkey          = optional(string)
-              testing_repo         = optional(bool)
-              testing_repo_baseurl = optional(string)
-              testing_repo_gpgkey  = optional(string)
+              url       = string
+              sha256sum = string
             }
           )
         )
+        script_envvars    = optional(list(string))
+        script_parameters = optional(list(string))
+        data_dir          = optional(string)
         k3s_fleetlock = optional(
           object(
             {
