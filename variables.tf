@@ -91,7 +91,6 @@ variable "node_groups" {
           )
         )
         # k3s config for this node_group
-        mode                 = optional(string)
         selinux              = optional(bool)
         repo_gpgkey          = optional(string)
         repo_baseurl         = optional(string)
