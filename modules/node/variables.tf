@@ -177,23 +177,67 @@ variable "mode" {
   nullable = false
 }
 
-variable "k3s_config" {
+variable "selinux" {
+  type        = bool
+  description = "K3s install with selinux enabled"
+  default     = null
+}
+
+variable "data_dir" {
+  type        = string
+  description = "K3s data directory"
+  default     = null
+}
+
+variable "install_script" {
   type = object(
     {
-      envvars              = optional(list(string))
-      parameters           = optional(list(string))
-      selinux              = optional(bool)
-      data_dir             = optional(string)
-      script_url           = optional(string)
-      script_sha256sum     = optional(string)
-      repo_baseurl         = optional(string)
-      repo_gpgkey          = optional(string)
-      testing_repo         = optional(bool)
-      testing_repo_baseurl = optional(string)
-      testing_repo_gpgkey  = optional(string)
+      url       = string
+      sha256sum = string
     }
   )
-  description = "K3s configuration"
+  description = "K3s script URL"
+}
+
+variable "script_envvars" {
+  type        = list(string)
+  description = "K3s script environment variables"
+  default     = null
+}
+
+variable "script_parameters" {
+  type        = list(string)
+  description = "K3s script install parameters"
+  default     = null
+}
+
+variable "repo_baseurl" {
+  type        = string
+  description = "K3s repository base URL"
+  default     = null
+}
+
+variable "repo_gpgkey" {
+  type        = string
+  description = "K3s repository GPG key"
+  default     = null
+}
+
+variable "testing_repo" {
+  type        = bool
+  description = "K3s Enable testing repository"
+  default     = null
+}
+
+variable "testing_repo_baseurl" {
+  type        = string
+  description = "Testing repository base URL"
+  default     = null
+}
+
+variable "testing_repo_gpgkey" {
+  type        = string
+  description = "Testing repository GPG key"
   default     = null
 }
 
@@ -205,6 +249,8 @@ variable "k3s_fleetlock" {
       cluster_ip     = optional(string)
       group          = optional(string)
       node_selectors = optional(list(map(string)), [])
+      affinity       = optional(string, "")
+      resources      = optional(string, "")
       tolerations = optional(
         list(
           object(
