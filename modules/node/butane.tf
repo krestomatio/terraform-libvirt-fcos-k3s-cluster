@@ -1,6 +1,6 @@
 module "butane_k3s_snippets" {
   source  = "krestomatio/butane-snippets/ct//modules/k3s"
-  version = "0.0.101"
+  version = "0.0.102"
 
   selinux               = var.selinux
   data_dir              = var.data_dir
