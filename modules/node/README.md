@@ -15,8 +15,8 @@ No providers.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_butane_k3s_snippets"></a> [butane\_k3s\_snippets](#module\_butane\_k3s\_snippets) | krestomatio/butane-snippets/ct//modules/k3s | 0.0.32 |
-| <a name="module_libvirt_fcos_base"></a> [libvirt\_fcos\_base](#module\_libvirt\_fcos\_base) | krestomatio/fcos/libvirt | 0.0.22 |
+| <a name="module_butane_k3s_snippets"></a> [butane\_k3s\_snippets](#module\_butane\_k3s\_snippets) | krestomatio/butane-snippets/ct//modules/k3s | 0.0.99 |
+| <a name="module_libvirt_fcos_base"></a> [libvirt\_fcos\_base](#module\_libvirt\_fcos\_base) | krestomatio/fcos/libvirt | 0.0.35 |
 
 ## Resources
 
@@ -38,6 +38,7 @@ No resources.
 | <a name="input_cidr_ip_address"></a> [cidr\_ip\_address](#input\_cidr\_ip\_address) | CIDR IP Address. Ex: 192.168.1.101/24 | `string` | `null` | no |
 | <a name="input_cmdline"></a> [cmdline](#input\_cmdline) | Arguments to the kernel | `list(map(string))` | `[]` | no |
 | <a name="input_cpu_mode"></a> [cpu\_mode](#input\_cpu\_mode) | Libvirt default cpu mode for VMs | `string` | `"host-passthrough"` | no |
+| <a name="input_data_dir"></a> [data\_dir](#input\_data\_dir) | K3s data directory | `string` | `null` | no |
 | <a name="input_data_volume"></a> [data\_volume](#input\_data\_volume) | Create node data volume | `bool` | `null` | no |
 | <a name="input_data_volume_pool"></a> [data\_volume\_pool](#input\_data\_volume\_pool) | Node default data volume pool | `string` | `null` | no |
 | <a name="input_data_volume_size"></a> [data\_volume\_size](#input\_data\_volume\_size) | Node default data volume size in bytes | `number` | `21474836480` | no |
@@ -48,10 +49,10 @@ No resources.
 | <a name="input_firmware"></a> [firmware](#input\_firmware) | The UEFI rom images for exercising UEFI secure boot in a qemu environment. | `string` | `null` | no |
 | <a name="input_fqdn"></a> [fqdn](#input\_fqdn) | Node FQDN | `string` | n/a | yes |
 | <a name="input_ignition_pool"></a> [ignition\_pool](#input\_ignition\_pool) | Default ignition files pool | `string` | `null` | no |
+| <a name="input_install_script"></a> [install\_script](#input\_install\_script) | K3s script URL | <pre>object(<br>    {<br>      url       = string<br>      sha256sum = string<br>    }<br>  )</pre> | n/a | yes |
 | <a name="input_interface_name"></a> [interface\_name](#input\_interface\_name) | Network interface name | `string` | `null` | no |
 | <a name="input_k3s_channel"></a> [k3s\_channel](#input\_k3s\_channel) | K3s installation channel | `string` | `null` | no |
-| <a name="input_k3s_config"></a> [k3s\_config](#input\_k3s\_config) | K3s configuration | <pre>object(<br>    {<br>      envvars              = optional(list(string))<br>      parameters           = optional(list(string))<br>      selinux              = optional(bool)<br>      data_dir             = optional(string)<br>      script_url           = optional(string)<br>      script_sha256sum     = optional(string)<br>      repo_baseurl         = optional(string)<br>      repo_gpgkey          = optional(string)<br>      testing_repo         = optional(bool)<br>      testing_repo_baseurl = optional(string)<br>      testing_repo_gpgkey  = optional(string)<br>    }<br>  )</pre> | `null` | no |
-| <a name="input_k3s_fleetlock"></a> [k3s\_fleetlock](#input\_k3s\_fleetlock) | Fleetlock addon for zincati upgrade orchestration | <pre>object(<br>    {<br>      version        = optional(string)<br>      namespace      = optional(string)<br>      cluster_ip     = optional(string)<br>      group          = optional(string)<br>      node_selectors = optional(list(map(string)), [])<br>      tolerations = optional(<br>        list(<br>          object(<br>            {<br>              key      = string<br>              operator = string<br>              value    = optional(string)<br>              effect   = string<br>            }<br>          )<br>        ), []<br>      )<br>    }<br>  )</pre> | `null` | no |
+| <a name="input_k3s_fleetlock"></a> [k3s\_fleetlock](#input\_k3s\_fleetlock) | Fleetlock addon for zincati upgrade orchestration | <pre>object(<br>    {<br>      version        = optional(string)<br>      namespace      = optional(string)<br>      cluster_ip     = optional(string)<br>      group          = optional(string)<br>      node_selectors = optional(list(map(string)), [])<br>      affinity       = optional(string, "")<br>      resources      = optional(string, "")<br>      tolerations = optional(<br>        list(<br>          object(<br>            {<br>              key      = string<br>              operator = string<br>              value    = optional(string)<br>              effect   = string<br>            }<br>          )<br>        ), []<br>      )<br>    }<br>  )</pre> | `null` | no |
 | <a name="input_keymap"></a> [keymap](#input\_keymap) | Keymap | `string` | `null` | no |
 | <a name="input_kubelet_config"></a> [kubelet\_config](#input\_kubelet\_config) | Contains the configuration for the Kubelet | <pre>object(<br>    {<br>      version = optional(string)<br>      content = optional(string)<br>    }<br>  )</pre> | `null` | no |
 | <a name="input_libosinfo_id"></a> [libosinfo\_id](#input\_libosinfo\_id) | Id for libosinfo/os type. See https://gitlab.com/libosinfo/osinfo-db/-/tree/main | `string` | `null` | no |
@@ -70,16 +71,24 @@ No resources.
 | <a name="input_origin_server"></a> [origin\_server](#input\_origin\_server) | Server host to connect nodes to (ex: https://example:6443) | `string` | `null` | no |
 | <a name="input_periodic_updates"></a> [periodic\_updates](#input\_periodic\_updates) | Only reboot for updates during certain timeframes<br>{<br>  time\_zone = "localtime"<br>  windows = [<br>    {<br>      days           = ["Sat"],<br>      start\_time     = "23:30",<br>      length\_minutes = "60"<br>    },<br>    {<br>      days           = ["Sun"],<br>      start\_time     = "00:30",<br>      length\_minutes = "60"<br>    }<br>  ]<br>} | <pre>object(<br>    {<br>      time_zone = optional(string, "")<br>      windows = list(<br>        object(<br>          {<br>            days           = list(string)<br>            start_time     = string<br>            length_minutes = string<br>          }<br>        )<br>      )<br>    }<br>  )</pre> | `null` | no |
 | <a name="input_qemu_agent"></a> [qemu\_agent](#input\_qemu\_agent) | Install qemu guest agent | `bool` | `true` | no |
+| <a name="input_repo_baseurl"></a> [repo\_baseurl](#input\_repo\_baseurl) | K3s repository base URL | `string` | `null` | no |
+| <a name="input_repo_gpgkey"></a> [repo\_gpgkey](#input\_repo\_gpgkey) | K3s repository GPG key | `string` | `null` | no |
 | <a name="input_rollout_wariness"></a> [rollout\_wariness](#input\_rollout\_wariness) | Wariness to update, 1.0 (very cautious) to 0.0 (very eager) | `string` | `null` | no |
 | <a name="input_root_base_volume_name"></a> [root\_base\_volume\_name](#input\_root\_base\_volume\_name) | Node default base root volume name | `string` | n/a | yes |
 | <a name="input_root_base_volume_pool"></a> [root\_base\_volume\_pool](#input\_root\_base\_volume\_pool) | Node default base root volume pool | `string` | `null` | no |
 | <a name="input_root_volume_pool"></a> [root\_volume\_pool](#input\_root\_volume\_pool) | Node default root volume pool | `string` | `null` | no |
 | <a name="input_root_volume_size"></a> [root\_volume\_size](#input\_root\_volume\_size) | Node default root volume size in bytes | `number` | `21474836480` | no |
+| <a name="input_script_envvars"></a> [script\_envvars](#input\_script\_envvars) | K3s script environment variables | `list(string)` | `null` | no |
+| <a name="input_script_parameters"></a> [script\_parameters](#input\_script\_parameters) | K3s script install parameters | `list(string)` | `null` | no |
 | <a name="input_secret_encryption_key"></a> [secret\_encryption\_key](#input\_secret\_encryption\_key) | Set an specific secret encryption (inteneded only for bootstrap) | `string` | `null` | no |
+| <a name="input_selinux"></a> [selinux](#input\_selinux) | K3s install with selinux enabled | `bool` | `null` | no |
 | <a name="input_ssh_authorized_key"></a> [ssh\_authorized\_key](#input\_ssh\_authorized\_key) | Authorized ssh key for core user | `string` | n/a | yes |
 | <a name="input_sync_time_with_host"></a> [sync\_time\_with\_host](#input\_sync\_time\_with\_host) | Sync guest time with the kvm host | `bool` | `null` | no |
 | <a name="input_sysctl"></a> [sysctl](#input\_sysctl) | Additional kernel tuning in sysctl.d | `map(string)` | `null` | no |
 | <a name="input_systemd_pager"></a> [systemd\_pager](#input\_systemd\_pager) | Systemd pager | `string` | `"cat"` | no |
+| <a name="input_testing_repo"></a> [testing\_repo](#input\_testing\_repo) | K3s Enable testing repository | `bool` | `null` | no |
+| <a name="input_testing_repo_baseurl"></a> [testing\_repo\_baseurl](#input\_testing\_repo\_baseurl) | Testing repository base URL | `string` | `null` | no |
+| <a name="input_testing_repo_gpgkey"></a> [testing\_repo\_gpgkey](#input\_testing\_repo\_gpgkey) | Testing repository GPG key | `string` | `null` | no |
 | <a name="input_timezone"></a> [timezone](#input\_timezone) | Timezone for VMs as listed by `timedatectl list-timezones` | `string` | `null` | no |
 | <a name="input_token"></a> [token](#input\_token) | K3s token for servers to join the cluster, and agents if `agent_token` is not set | `string` | `null` | no |
 | <a name="input_vcpu"></a> [vcpu](#input\_vcpu) | Node default vcpu count | `number` | `1` | no |
