@@ -1,6 +1,6 @@
 module "libvirt_fcos_base" {
   source  = "krestomatio/fcos/libvirt"
-  version = "0.0.35"
+  version = "0.0.36"
 
   # custom
   butane_snippets_additional = compact(
