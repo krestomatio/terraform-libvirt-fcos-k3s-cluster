@@ -13,7 +13,7 @@ module "butane_k3s_snippets" {
   testing_repo_baseurl  = var.testing_repo_baseurl
   testing_repo_gpgkey   = var.testing_repo_gpgkey
   mode                  = var.mode
-  secret_encryption_key = { key = var.secret_encryption_key }
+  secret_encryption_key = var.secret_encryption_key
   token                 = var.token
   agent_token           = var.agent_token
   channel               = var.k3s_channel
